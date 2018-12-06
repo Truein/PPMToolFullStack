@@ -1,5 +1,6 @@
 package com.udemy.fullstack.ppmtool.web;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.udemy.fullstack.ppmtool.domain.Project;
 import com.udemy.fullstack.ppmtool.services.MapValidationErrorService;
 import com.udemy.fullstack.ppmtool.services.ProjectService;
@@ -8,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -42,5 +40,16 @@ public class ProjectController {
         return  new ResponseEntity<Project>(project, HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/{projectId}")
+    public ResponseEntity<?> getProjectById(@PathVariable String projectId)
+    {
+        Project project = projectService.findProjectByIdentifier(projectId);
+
+
+//        System.out.println("project = [" + project.toString() + "]");
+
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
+
+    }
 
 }
