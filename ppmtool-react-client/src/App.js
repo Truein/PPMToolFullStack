@@ -8,8 +8,6 @@ class App extends Component {
     return (
       <div className="App">
         <Dashboard />
-        <Dashboard />
-        <Dashboard />
       </div>
     );
   }
