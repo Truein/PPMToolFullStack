@@ -3,7 +3,6 @@ import ProjectItem from "./Project/ProjectItem";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import CreateProjectButton from "./Project/CreateProjectButton";
-
 class Dashboard extends Component {
   render() {
     return (
