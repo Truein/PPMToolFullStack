@@ -1,6 +1,7 @@
 package com.udemy.fullstack.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -32,8 +33,11 @@ public class Project {
     private Date end_date;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
+    @Column(updatable = false)
     private Date created_At;
+
     @JsonFormat(pattern = "yyyy-mm-dd")
+    @Column(updatable = false)
     private Date updated_At;
 
     Project()

@@ -41,6 +41,20 @@ public class ProjectController {
         return  new ResponseEntity<Project>(project, HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/{projectId}")
+    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result)
+
+    {
+
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+
+        if (errorMap != null) return errorMap;
+
+        Project project1 = projectService.saveOrUpdateProject(project);
+
+        return  new ResponseEntity<Project>(project, HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/{projectId}")
     public ResponseEntity<?> getProjectById(@PathVariable String projectId)
     {

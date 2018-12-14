@@ -14,11 +14,11 @@ class Dashboard extends Component {
 
   render() {
     const { projects } = this.props.project;
-    const projectObject = {
-      //   projectName: "ProjectName PROPS",
-      //   projectIdentifier: "ProjectIdentifier PROPS",
-      //   description: "description from PROPS"
-    };
+    //const projectObject = {
+    //   projectName: "ProjectName PROPS",
+    //   projectIdentifier: "ProjectIdentifier PROPS",
+    //   description: "description from PROPS"
+    // };
 
     return (
       <div>

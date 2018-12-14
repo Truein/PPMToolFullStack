@@ -11,13 +11,13 @@ export default function(state = initialState, action) {
     case GET_PROJECTS:
       return {
         ...state,
-        project: action.payload
+        projects: action.payload
       };
 
     case GET_PROJECT:
       return {
         ...state,
-        projects: action.payload
+        project: action.payload
       };
 
     default:
