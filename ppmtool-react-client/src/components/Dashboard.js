@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import ProjectItem from "./Project/ProjectItem";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 import CreateProjectButton from "./Project/CreateProjectButton";
 import { connect } from "react-redux";
 import { getProjects } from "../actions/projectActions";
@@ -14,27 +12,21 @@ class Dashboard extends Component {
 
   render() {
     const { projects } = this.props.project;
-    //const projectObject = {
-    //   projectName: "ProjectName PROPS",
-    //   projectIdentifier: "ProjectIdentifier PROPS",
-    //   description: "description from PROPS"
-    // };
 
     return (
-      <div>
-        <div className="projects">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <h1 className="display-4 text-center">Projects</h1>
-                <br />
-                <CreateProjectButton />
-                <br />
-                <hr />
-                {projects.map(project => (
-                  <ProjectItem key={project.id} project={project} />
-                ))}
-              </div>
+      <div className="projects">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1 className="display-4 text-center">Projects</h1>
+              <br />
+              <CreateProjectButton />
+
+              <br />
+              <hr />
+              {projects.map(project => (
+                <ProjectItem key={project.id} project={project} />
+              ))}
             </div>
           </div>
         </div>

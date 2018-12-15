@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { createProject } from "../../actions/projectActions";
-import { getProject } from "../../actions/projectActions";
+import { getProject, createProject } from "../../actions/projectActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
@@ -27,7 +26,6 @@ class UpdateProject extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-
     const {
       id,
       projectName,
@@ -67,6 +65,7 @@ class UpdateProject extends Component {
       start_date: this.state.start_date,
       end_date: this.state.end_date
     };
+
     this.props.createProject(updateProject, this.props.history);
   }
 
@@ -87,6 +86,7 @@ class UpdateProject extends Component {
                       "is-invalid": errors.projectName
                     })}
                     placeholder="Project Name"
+                    name="projectName"
                     value={this.state.projectName}
                     onChange={this.onChange}
                   />
@@ -99,22 +99,21 @@ class UpdateProject extends Component {
                     type="text"
                     className="form-control form-control-lg"
                     placeholder="Unique Project ID"
+                    name="projectIdentifier"
                     value={this.state.projectIdentifier}
                     onChange={this.onChange}
                     disabled
                   />
                 </div>
-                {
-                  //  <!-- disabled for Edit Only!! remove "disabled" for the Create operation -->
-                }
                 <div className="form-group">
                   <textarea
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.description
                     })}
                     placeholder="Project Description"
-                    value={this.state.description}
+                    name="description"
                     onChange={this.onChange}
+                    value={this.state.description}
                   />
                   {errors.description && (
                     <div className="invalid-feedback">{errors.description}</div>

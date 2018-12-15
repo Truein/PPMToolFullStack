@@ -9,9 +9,9 @@ class AddProject extends Component {
     super();
 
     this.state = {
-      description: "",
       projectName: "",
       projectIdentifier: "",
+      description: "",
       start_date: "",
       end_date: "",
       errors: {}
@@ -22,7 +22,6 @@ class AddProject extends Component {
   }
 
   //life cycle hooks
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -30,39 +29,26 @@ class AddProject extends Component {
   }
 
   onChange(e) {
-    //this.setState({ projectName: e.target.value });
     this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
     e.preventDefault();
-
     const newProject = {
-      description: this.state.description,
       projectName: this.state.projectName,
       projectIdentifier: this.state.projectIdentifier,
+      description: this.state.description,
       start_date: this.state.start_date,
       end_date: this.state.end_date
     };
-
     this.props.createProject(newProject, this.props.history);
   }
 
   render() {
     const { errors } = this.state;
+
     return (
       <div>
-        {
-          //check name attribute input fields
-          //create constructor
-          //set state
-          //set value on input fields
-          //create onChange Function
-          //set onChange on each input field
-          //bind on constructor
-          //check state change in react extension
-        }
-
         <div className="project">
           <div className="container">
             <div className="row">
@@ -91,7 +77,7 @@ class AddProject extends Component {
                     <input
                       type="text"
                       className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.projectName
+                        "is-invalid": errors.projectIdentifier
                       })}
                       placeholder="Unique Project ID"
                       name="projectIdentifier"
@@ -104,11 +90,10 @@ class AddProject extends Component {
                       </div>
                     )}
                   </div>
-
                   <div className="form-group">
                     <textarea
                       className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.projectName
+                        "is-invalid": errors.description
                       })}
                       placeholder="Project Description"
                       name="description"
@@ -125,33 +110,21 @@ class AddProject extends Component {
                   <div className="form-group">
                     <input
                       type="date"
-                      className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.projectName
-                      })}
+                      className="form-control form-control-lg"
                       name="start_date"
                       value={this.state.start_date}
                       onChange={this.onChange}
                     />
-                    {errors.start_date && (
-                      <div className="invalid-feedback">
-                        {errors.start_date}
-                      </div>
-                    )}
                   </div>
                   <h6>Estimated End Date</h6>
                   <div className="form-group">
                     <input
                       type="date"
-                      className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.projectName
-                      })}
+                      className="form-control form-control-lg"
                       name="end_date"
                       value={this.state.end_date}
                       onChange={this.onChange}
                     />
-                    {errors.end_date && (
-                      <div className="invalid-feedback">{errors.end_date}</div>
-                    )}
                   </div>
 
                   <input
