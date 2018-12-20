@@ -1,6 +1,7 @@
 package com.udemy.fullstack.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
