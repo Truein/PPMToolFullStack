@@ -14,35 +14,29 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank(message = "Project Name is required")
+    @NotBlank(message = "Project name is required")
     private String projectName;
-
-    @NotBlank(message = "Project Identifier is required")
-    @Size(min=4, max=6, message="Please use 4 to 6 Characters")
+    @NotBlank(message ="Project Identifier is required")
+    @Size(min=4, max=5, message = "Please use 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String projectIdentifier;
-
-    @NotBlank(message = "Project Description is required")
+    @NotBlank(message = "Project description is required")
     private String description;
-
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date start_date;
-
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
-
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(updatable = false)
     private Date created_At;
-
     @JsonFormat(pattern = "yyyy-mm-dd")
-    @Column(updatable = false)
     private Date updated_At;
 
-    Project()
-    {
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @JsonIgnore
+    private Backlog backlog;
 
+    public Project() {
     }
 
     public Long getId() {
@@ -109,19 +103,23 @@ public class Project {
         this.updated_At = updated_At;
     }
 
+    public Backlog getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(Backlog backlog) {
+        this.backlog = backlog;
+    }
+
     @PrePersist
-    protected void onCreate() {
+    protected void onCreate(){
         this.created_At = new Date();
     }
 
-
     @PreUpdate
-    protected void onUpdate()
-    {
+    protected void onUpdate(){
         this.updated_At = new Date();
     }
-
-
 
 
 }

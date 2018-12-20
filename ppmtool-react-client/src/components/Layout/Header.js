@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 class Header extends Component {
+  y;
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
