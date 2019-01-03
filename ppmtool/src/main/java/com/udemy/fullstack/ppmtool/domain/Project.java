@@ -1,8 +1,6 @@
 package com.udemy.fullstack.ppmtool.domain;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -36,6 +34,15 @@ public class Project {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     @JsonIgnore
     private Backlog backlog;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private User user;
+
+
+    private String projectLeader;
+
+
 
     public Project() {
     }
@@ -112,6 +119,22 @@ public class Project {
         this.backlog = backlog;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getProjectLeader() {
+        return projectLeader;
+    }
+
+    public void setProjectLeader(String projectLeader) {
+        this.projectLeader = projectLeader;
+    }
+
     @PrePersist
     protected void onCreate(){
         this.created_At = new Date();
@@ -121,6 +144,5 @@ public class Project {
     protected void onUpdate(){
         this.updated_At = new Date();
     }
-
 
 }
